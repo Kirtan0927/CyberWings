@@ -106,7 +106,7 @@ DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=YOUR_MYSQL_PASSWORD_HERE
-DB_NAME=cyberwings_db
+DB_NAME=db_name 
 
 ADMIN_USERNAME=*****
 ADMIN_PASSWORD=**********
@@ -179,8 +179,8 @@ You will see:
 ## 🔐 Admin Panel
 
 ### Login Credentials (from `.env`)
-- **Username:** `admin`
-- **Password:** `CyberWings@2024`
+- **Username:** `Username`
+- **Password:** `Password`
 
 ### Admin Features
 | Panel     | What you can do                                                      |
