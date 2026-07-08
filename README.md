@@ -108,14 +108,12 @@ DB_USER=root
 DB_PASSWORD=YOUR_MYSQL_PASSWORD_HERE
 DB_NAME=cyberwings_db
 
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=CyberWings@2024
+ADMIN_USERNAME=*****
+ADMIN_PASSWORD=**********
 
 SESSION_SECRET=change_this_to_a_long_random_string
 ```
 
-> ⚠️ Change `DB_PASSWORD` to your actual MySQL root password.
-> ⚠️ Change `ADMIN_PASSWORD` and `SESSION_SECRET` before going live.
 
 ---
 
