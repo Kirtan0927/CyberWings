@@ -1,0 +1,818 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>The Cyber Wings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  
+  <!-- Use Roboto font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    /* Apply Roboto globally */
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+   @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+    .typewriter {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid currentColor;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    /* Continuous blinking for dots */
+    @keyframes dotBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-left: 4px;
+      animation: dotBlink 1.5s infinite;
+    }
+    .dot.red {
+      background-color: #ef4444; /* red-500 */
+      animation-delay: 0s;
+    }
+    .dot.yellow {
+      background-color: #eab308; /* yellow-500 */
+      animation-delay: 0.3s;
+    }
+    .dot.green {
+      background-color: #22c55e; /* green-500 */
+      animation-delay: 0.6s;
+    }
+    /* Pulsing dots for last 3 dots (the textual dots) */
+    .text-dots {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-left: 4px;
+      animation: dotBlink 1.5s infinite;
+    }
+    .text-dots:nth-child(1) {
+      animation-delay: 0s;
+    }
+    .text-dots:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    .text-dots:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    @keyframes textDotsBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+<script>
+   // Typewriter effect for multiple lines sequentially
+   document.addEventListener("DOMContentLoaded", () => {
+     const lines = Array.from(document.querySelectorAll("#terminal-content .typewriter"));
+     let currentLine = 0;
+
+     function typeLine(lineEl, text, callback) {
+       let i = 0;
+       lineEl.textContent = "";
+       lineEl.style.borderRight = "2px solid currentColor";
+       function type() {
+         if (i < text.length) {
+           lineEl.textContent += text.charAt(i);
+           i++;
+           setTimeout(type, 50);
+         } else {
+           lineEl.style.borderRight = "none";
+           if (callback) callback();
+         }
+       }
+       type();
+     }
+
+     function typeNext() {
+       if (currentLine >= lines.length) return;
+       const lineEl = lines[currentLine];
+       const text = lineEl.getAttribute("data-text");
+       typeLine(lineEl, text, () => {
+         currentLine++;
+         typeNext();
+       });
+     }
+
+     typeNext();
+   
+   
+     // Continuous looping typewriter effect for "The Cyber Wings" in main heading
+     const mainTypewriter = document.querySelector("main h1 span.typewriter");
+     if (mainTypewriter) {
+       const mainText = mainTypewriter.getAttribute("data-text");
+       let i = 0;
+
+       function typeMain() {
+         mainTypewriter.textContent = "";
+         mainTypewriter.style.borderRight = "2px solid currentColor";
+         i = 0;
+
+         function type() {
+           if (i < mainText.length) {
+             mainTypewriter.textContent += mainText.charAt(i);
+             i++;
+             setTimeout(type, 100);
+           } else {
+             mainTypewriter.style.borderRight = "none";
+             setTimeout(erase, 1500);
+           }
+         }
+
+         function erase() {
+           let j = mainText.length;
+           mainTypewriter.style.borderRight = "2px solid currentColor";
+
+           function eraseChar() {
+             if (j > 0) {
+               mainTypewriter.textContent = mainTypewriter.textContent.slice(0, -1);
+               j--;
+               setTimeout(eraseChar, 50);
+             } else {
+               mainTypewriter.style.borderRight = "none";
+               setTimeout(typeMain, 500);
+             }
+           }
+           eraseChar();
+         }
+
+         type();
+       }
+
+       typeMain();
+      }
+      });
+  </script>
+
+</head>
+
+ <body class="bg-gradient-to-br from-[#050a0f] via-[#0a1a2a] to-[#050a0f] text-gray-300 min-h-screen flex flex-col">
+  <!-- Navigation -->
+  <header class="bg-[#050a0f] border-b border-[#0a1a27] sticky top-0 z-50 select-none">
+   <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
+    <div class="flex items-center space-x-2">
+    <a href="/index.html"><img src="/images/logo.png" alt="Logo" style="width:44px;height:44px;filter:drop-shadow(0 0 8px rgba(0,216,255,0.7))"/></a>
+     <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-400 bg-clip-text text-transparent font-extrabold text-2xl drop-shadow-[0_0_8px_rgba(0,216,255,0.7)">
+      THECYBERWINGS
+     </span>
+    </div>
+    <ul class="hidden md:flex space-x-10 text-sm font-normal text-gray-400">
+     <li>
+      <a class="text-cyan-400 font-semibold border-b-2 border-cyan-400 pb-1" href="#home">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="member.html">
+       Members
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="Event.html">
+       Events
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+    <div class="hidden md:flex space-x-6 text-gray-400 text-lg">
+     <a aria-label="Instagram" class="hover:text-pink-600 transition" href="https://www.instagram.com/the_cyber_wings?igsh=Y3Z0NjJzY2tndXJv">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="GitHub" class="hover:text-white transition" href="#">
+      <i class="fab fa-github">
+      </i>
+     </a>
+     <a aria-label="LinkedIn" class="hover:text-blue-500 transition" href="https://www.linkedin.com/company/the-cyber-wings/">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <main class="flex-grow overflow-y-auto">
+
+   <!------------------------------------------ Home Section ------------------------------------------->
+   <section class="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center md:items-start gap-20 md:gap-32" id="home">
+    <section class="flex flex-col max-w-xl space-y-8">
+     <p class="text-cyan-400 font-mono text-sm select-none">
+      $ ./welcome.sh
+     </p>
+     <h1 class="font-extrabold text-white text-5xl sm:text-6xl leading-tight ">
+       Welcome to<br>
+      <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-400 bg-clip-text text-transparent">
+       <span class="typewriter" data-text="The Cyber Wings"></span>
+      </span>
+     </h1>
+     <p class="text-gray-400 text-lg leading-relaxed max-w-lg select-none">
+      The premier cybersecurity club at our college, dedicated to exploring digital security, ethical hacking, and building a community of cyber enthusiasts.
+     </p>
+     <div class="flex space-x-4 select-none">
+      <a class="inline-flex items-center justify-center bg-cyan-400 hover:bg-cyan-500 text-black font-semibold rounded-lg px-8 py-3 shadow-lg shadow-cyan-400/50 transition" href="#membership">
+       Join Us Now
+       <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+       </svg>
+      </a>
+      <a class="inline-flex items-center justify-center bg-gray-800 text-white hover:bg-cyan-400 hover:text-black hover: font-semibold duration-1000 hover:shadow-lg rounded-lg px-6 py-3 border border-transparent hover:border-gray-600 transition" href="#about">
+       Learn More
+       <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+       </svg>
+      </a>
+     </div>
+     <div class="flex justify-between max-w-md mt-16 select-none">
+      <div class="flex flex-col items-center space-y-1">
+       <i class="fas fa-user-friends text-cyan-400 text-3xl">
+       </i>
+       <span class="font-extrabold text-cyan-400 text-xl select-none">
+        50+
+       </span>
+       <span class="text-gray-400 text-sm select-none">
+        Active Members
+       </span>
+      </div>
+      <div class="flex flex-col items-center space-y-1">
+       <i class="fas fa-calendar-check text-green-400 text-3xl">
+       </i>
+       <span class="font-extrabold text-green-400 text-xl select-none">
+        20+
+       </span>
+       <span class="text-gray-400 text-sm select-none">
+        Events Hosted
+       </span>
+      </div>
+      <div class="flex flex-col items-center space-y-1">
+       <i class="fas fa-trophy text-purple-400 text-3xl">
+       </i>
+       <span class="font-extrabold text-purple-400 text-xl select-none">
+        5+
+       </span>
+       <span class="text-gray-400 text-sm select-none">
+        Competitions Won
+       </span>
+      </div>
+     </div>
+    </section>
+    
+    <!---------------------------------------------Terminal---------------------------------------------------->
+  <!-- Terminal Header -->
+   <div class="mt-20 bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-lg shadow-xl w-full max-w-md font-mono text-sm select-none animate-float">
+     <div class="flex items-center px-6 py-2 bg-gray-800 rounded-t-lg border-b border-gray-700">
+      <span class="dot red" aria-label="Red blinking dot"></span>
+      <span class="dot yellow" aria-label="Yellow blinking dot"></span>
+      <span class="dot green" aria-label="Green blinking dot"></span>
+      <span class="text-gray-400 text-xs ml-3 select-none">
+       terminal
+      </span>
+     </div>
+     <div class="p-8 space-y-4" id="terminal-content">
+      <p>
+       <span class="text-green-400 typewriter" data-text="$ whoami" style="--n:8"></span>
+      </p>
+      <p>
+       <span class="text-white typewriter" data-text="cyberwing_member" style="--n:14"></span>
+      </p>
+      <p>
+       <span class="text-green-400 typewriter" data-text="$ cat mission.txt" style="--n:15"></span>
+      </p>
+      <p>
+       <span class="text-white typewriter" data-text="To educate, innovate, and secure the digital future." style="--n:38"></span>
+      </p>
+      <p>
+       <span class="text-green-400 typewriter" data-text="$ ./join_team.sh" style="--n:15"></span>
+      </p>
+      <p>
+       <span class="text-white typewriter" data-text="Initializing recruitment process..." style="--n:29"></span>
+      </p>
+     </div>
+
+
+
+   </section>
+
+   <!-- About Section -->
+   <section class="bg-[#0B111A] text-[#A0AEC0] py-20 px-6 sm:px-10 lg:px-16 select-none" id="about">
+    <div class="max-w-7xl mx-auto flex flex-col items-center">
+     <p class="text-[#00D8FF] text-xs font-mono tracking-widest mb-3 select-none">
+      01 // ABOUT US
+     </p>
+     <h2 class="text-white text-3xl sm:text-4xl font-extrabold mb-4 text-center leading-tight max-w-3xl">
+      Our Mission &amp; Vision
+     </h2>
+     <p class="text-center max-w-xl mb-16 leading-relaxed">
+      The Cyber Wings was founded with a clear purpose: to create a community of cybersecurity enthusiasts who learn, grow, and innovate together.
+     </p>
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-7xl">
+      <article class="border border-[#0B111A] rounded-lg p-8 flex flex-col items-center text-center hover:shadow-[0_0_15px_#00D8FF] hover:translate-y-[-15px] duration-1000 transition-shadow duration-300">
+       <svg aria-hidden="true" class="w-12 h-12 mb-4 text-[#00D8FF] drop-shadow-[0_0_8px_rgba(0,216,255,0.7)]" fill="none" stroke="#00D8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z">
+        </path>
+       </svg>
+       <h3 class="text-[#00D8FF] font-semibold text-lg mb-2 select-none">
+        Education
+       </h3>
+       <p class="leading-relaxed max-w-xs">
+        We provide workshops, training sessions, and resources to help members develop cybersecurity skills and knowledge.
+       </p>
+      </article>
+      <article class="border border-[#0B111A] rounded-lg p-8 flex flex-col items-center text-center hover:shadow-[0_0_15px_#00D8FF]  hover:translate-y-[-15px] duration-1000 transition-shadow duration-300">
+       <svg aria-hidden="true" class="w-12 h-12 mb-4 text-[#00D8FF] drop-shadow-[0_0_8px_rgba(0,216,255,0.7)]" fill="none" stroke="#00D8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+        <path d="M17 21v-2a4 4 0 00-3-3.87">
+        </path>
+        <path d="M7 21v-2a4 4 0 013-3.87">
+        </path>
+        <circle cx="12" cy="7" r="4">
+        </circle>
+       </svg>
+       <h3 class="text-[#00D8FF] font-semibold text-lg mb-2 select-none">
+        Community
+       </h3>
+       <p class="leading-relaxed max-w-xs">
+        We foster a collaborative environment where members can network, share ideas, and work together on cybersecurity projects.
+       </p>
+      </article>
+      <article class="border border-[#0B111A] rounded-lg p-8 flex flex-col items-center text-center hover:shadow-[0_0_15px_#00D8FF]  hover:translate-y-[-15px] duration-1000 transition-shadow duration-300">
+       <svg aria-hidden="true" class="w-12 h-12 mb-4 text-[#00D8FF] drop-shadow-[0_0_8px_rgba(0,216,255,0.7)]" fill="none" stroke="#00D8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z">
+        </path>
+       </svg>
+       <h3 class="text-[#00D8FF] font-semibold text-lg mb-2 select-none">
+        Security
+       </h3>
+       <p class="leading-relaxed max-w-xs">
+        We promote ethical hacking practices and responsible disclosure to contribute to a more secure digital world.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <!----------------------- Our Story Section ------------------------------>
+   <section class=" max-w-7xl mx-auto px-6 py-20 md:py-24 select-none" id="story">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+     <div class="md:col-span-6 space-y-6">
+      <p class="text-[#00d8ff] text-xs font-semibold tracking-widest select-none">
+       OUR STORY
+      </p>
+      <h2 class="text-white text-3xl md:text-4xl font-extrabold leading-tight">
+       From Humble Beginnings
+      </h2>
+      <p class="text-gray-400 text-base leading-relaxed">
+       Founded in 2020 by a group of passionate students, The Cyber Wings has grown from a small study group into a recognized club with over 50 active members.
+      </p>
+      <p class="text-gray-400 text-base leading-relaxed">
+       Our club has organized numerous workshops, participated in national cybersecurity competitions, and even hosted our own CTF (Capture The Flag) events.
+      </p>
+      <div class="flex space-x-12 mt-10">
+       <div class="text-center group cursor-dex`fault">
+        <p class="text-[#00d8ff] font-extrabold text-xl select-none group-hover:text-[#00d8ffcc] transition-colors duration-300">
+         50+
+        </p>
+        <p class="text-gray-400 text-sm mt-1">
+         Active Members
+        </p>
+       </div>
+       <div class="text-center group cursor-default">
+        <p class="text-[#7ed77e] font-extrabold text-xl select-none group-hover:text-[#6fc96fcc] transition-colors duration-300">
+         20+
+        </p>
+        <p class="text-gray-400 text-sm mt-1">
+         Events Hosted
+        </p>
+       </div>
+       <div class="text-center group cursor-default">
+        <p class="text-[#b38de3] font-extrabold text-xl select-none group-hover:text-[#9a6ed3cc] transition-colors duration-300">
+         5+
+        </p>
+        <p class="text-gray-400 text-sm mt-1">
+         Competitions Won
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="md:col-span-6">
+      <div class="rounded-lg overflow-hidden cursor-pointer transition duration-500 hover:brightness-110 hover:scale-[1.03] bg-gradient-to-b from-[#0f3e57] to-[#2f1f4a] flex flex-col items-center justify-center py-24">
+       <img alt="Blue target icon representing club activity gallery placeholder" class="mb-6 transition" height="80" src="https://storage.googleapis.com/a1aa/image/e241351f-54b4-4973-b696-ef86bd890dc4.jpg" width="80"/>
+       <p class="text-gray-400 text-sm select-none">
+        Club activity gallery placeholder
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-------------------------- Team Section --------------------------------->
+   <section class="bg-[#0a0f15] text-white py-20 px-6 select-none" id="team">
+    <div class="max-w-[1200px] mx-auto text-center">
+     <p class="text-cyan-400 text-xs mb-2 tracking-widest mono">
+      02
+      <span class="text-gray-400">
+       //
+      </span>
+      OUR TEAM
+     </p>
+     <h2 class="font-extrabold text-3xl md:text-4xl mb-4">
+      Meet Our Leadership
+     </h2>
+     <p class="text-gray-400 max-w-xl mx-auto mb-16 text-base md:text-lg leading-relaxed">
+      Our team of dedicated leaders works tirelessly to organize events, manage club operations, and create opportunities for all members.
+     </p>
+     
+    <div class="flex items-center justify-center p-4 gap-6">
+    <div class="rounded-lg border border-cyan-600 transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#00CFFF]/20 text-center relative group cursor-pointer pb-20 p-6 max-w-xs w-full text-center relative group cursor-pointer pb-20">
+    <div class="flex justify-center mb-4">
+      <div class="w-20 h-20 rounded-full border border-cyan-600 flex items-center justify-center text-cyan-400 font-semibold text-lg select-none">
+        AJ
+      </div>
+    </div>
+    <h2 class="text-cyan-400 font-bold text-lg leading-none mb-1">Pujan Patel</h2>
+    <p class="text-cyan-400 text-sm font-semibold mb-3">CEO</p>
+    <p class="text-gray-400 text-sm leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-6 right-6 bottom-6  rounded-md p-3">
+      Conducting vulnerability research and ethical hacking
+    </p>
+  </div>
+
+<div class="rounded-lg border border-cyan-600 transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#00CFFF]/20 text-center relative group cursor-pointer pb-20 p-6 max-w-xs w-full text-center relative group cursor-pointer pb-20">
+    <div class="flex justify-center mb-4">
+      <div class="w-20 h-20 rounded-full border border-cyan-600 flex items-center justify-center text-cyan-400 font-semibold text-lg select-none">
+        SC
+      </div>
+    </div>
+    <h2 class="text-cyan-400 font-bold text-lg leading-none mb-1">Akansha Pathak</h2>
+    <p class="text-cyan-400 text-sm font-semibold mb-3">co-CEO</p>
+    <p class="text-gray-400 text-sm leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-6 right-6 bottom-6  rounded-md p-3">
+      Conducting vulnerability research and ethical hacking
+    </p>
+  </div>
+  
+  <div class="rounded-lg border border-cyan-600 transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#00CFFF]/20 text-center relative group cursor-pointer pb-20 p-6 max-w-xs w-full text-center relative group cursor-pointer pb-20">
+    <div class="flex justify-center mb-4">
+      <div class="w-20 h-20 rounded-full border border-cyan-600 flex items-center justify-center text-cyan-400 font-semibold text-lg select-none">
+        PP
+      </div>
+    </div>
+    <h2 class="text-cyan-400 font-bold text-lg leading-none mb-1">Prathamesh Pawar</h2>
+    <p class="text-cyan-400 text-sm font-semibold mb-3">Events Coordinator</p>
+    <p class="text-gray-400 text-sm leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-6 right-6 bottom-6  rounded-md p-3">
+      Conducting vulnerability research and ethical hacking
+    </p>
+  </div>
+
+ <div class="rounded-lg border border-cyan-600 transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#00CFFF]/20 text-center relative group cursor-pointer pb-20 p-6 max-w-xs w-full text-center relative group cursor-pointer pb-20">
+    <div class="flex justify-center mb-4">
+      <div class="w-20 h-20 rounded-full border border-cyan-600 flex items-center justify-center text-cyan-400 font-semibold text-lg select-none">
+        MT
+      </div>
+    </div>
+    <h2 class="text-cyan-400 font-bold text-lg leading-none mb-1">Amey Pawshe</h2>
+    <p class="text-cyan-400 text-sm font-semibold mb-3">Technical Lead</p>
+    <p class="text-gray-400 text-sm leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-6 right-6 bottom-6  rounded-md p-3">
+      Conducting vulnerability research and ethical hacking
+    </p>
+  </div>
+  </div>
+
+     <button aria-label="View All Members" class="mx-auto block border border-gray-700 rounded-md px-6 py-3 text-white font-semibold hover:bg-gray-800 flex items-center space-x-2 transition-colors duration-300">
+      <a href="member.html">
+       View All Members
+      </a>
+      <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+       <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round">
+       </path>
+      </svg>
+     </button>
+    </div>
+   </section>
+   <!------------------------------------- Events Section --------------------------------------->
+   <section class="bg-gradient-to-b from-[#050a0f] to-[#0a121a] text-gray-400 py-20 px-6 select-none" id="events">
+    <div class="max-w-4xl mx-auto text-center">
+     <i class="fas fa-shield-alt text-cyan-400 text-6xl mb-6">
+     </i>
+     <h2 class="text-3xl sm:text-4xl font-extrabold text-cyan-500 mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+      Join The Cyber Wings
+     </h2>
+     <p class="max-w-xl mx-auto mb-16 text-base sm:text-lg leading-relaxed">
+      Ready to embark on your cybersecurity journey? Join our community of ethical hackers, security enthusiasts, and future cybersecurity professionals.
+     </p>
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="border border-cyan-700 rounded-lg p-8 flex flex-col items-center space-y-4 hover:border-cyan-400 hover:bg-[#062634] hover:shadow-[0_0_35px_#0a2a3a] duration-500 cursor-pointer">
+       <i class="fas fa-user-friends text-cyan-400 text-4xl hover:text-cyan-300 transition-colors">
+       </i>
+       <h3 class="font-semibold text-white text-lg hover:text-cyan-300 transition-colors">
+        Community
+       </h3>
+       <p class="text-center text-sm leading-relaxed hover:text-gray-300 transition-colors">
+        Connect with like-minded security enthusiasts
+       </p>
+      </div>
+      <div class="border border-cyan-700 rounded-lg p-8 flex flex-col items-center space-y-4 hover:border-cyan-400 hover:bg-[#062634] hover:shadow-[0_0_35px_#0a2a3a] duration-500 transition-colors cursor-pointer">
+       <i class="fas fa-code text-cyan-400 text-4xl hover:text-cyan-300 transition-colors">
+       </i>
+       <h3 class="font-semibold text-white text-lg hover:text-cyan-300 transition-colors">
+        Learning
+       </h3>
+       <p class="text-center text-sm leading-relaxed hover:text-gray-300 transition-colors">
+        Hands-on workshops and training sessions
+       </p>
+      </div>
+      <div class="border border-cyan-700 rounded-lg p-8 flex flex-col items-center space-y-4 hover:border-cyan-400 hover:bg-[#062634] hover:shadow-[0_0_35px_#0a2a3a] duration-500 transition-colors cursor-pointer">
+       <i class="fas fa-lock text-cyan-400 text-4xl hover:text-cyan-300 transition-colors">
+       </i>
+       <h3 class="font-semibold text-white text-lg hover:text-cyan-300 transition-colors">
+        Ethics
+       </h3>
+       <p class="text-center text-sm leading-relaxed hover:text-gray-300 transition-colors">
+        Responsible disclosure and ethical hacking
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Membership Registration Section (Merged Form) -->
+   <section class="bg-gradient-to-br from-[#000a12] via-[#00121a] to-[#001a22] text-gray-300 py-20 px-6 flex justify-center select-none" id="membership">
+    <section class="max-w-4xl w-full bg-[#0a1220] border border-[#0a2a3a] rounded-xl p-8 hover:shadow-[0_0_35px_#0a2a3a] duration-1000">
+     <h2 class="text-white text-2xl font-semibold mb-2">
+      Membership Registration
+     </h2>
+     <p class="mb-8 max-w-[720px]">
+      Fill out the form below to join our cybersecurity community. All fields marked with * are required.
+     </p>
+     <form autocomplete="off" class="space-y-8" novalidate="">
+      <fieldset>
+       <legend class="text-white font-semibold text-lg mb-4">
+        Personal Information
+       </legend>
+       <div class="space-y-6 max-w-3xl mx-auto">
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="fullname">
+          Full Name *
+         </label>
+         <input class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 placeholder-gray-500 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" id="fullname" name="fullname" placeholder="Enter your full name" required="" type="text"/>
+        </div>
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="email">
+          Email Address *
+         </label>
+         <input class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 placeholder-gray-500 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" id="email" name="email" placeholder="your.email@example.com" required="" type="email"/>
+        </div>
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="studentid">
+          Student ID *
+         </label>
+         <input class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 placeholder-gray-500 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" id="studentid" name="studentid" placeholder="Enter your student ID" required="" type="text"/>
+        </div>
+       </div>
+      </fieldset>
+      <fieldset>
+       <legend class="text-white font-semibold text-lg mb-4">
+        Academic Information
+       </legend>
+       <div class="space-y-6 max-w-3xl mx-auto">
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="academicyear">
+          Academic Year *
+         </label>
+         <select class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" id="academicyear" name="academicyear" required="">
+          <option disabled="" selected="" value="">
+           Select your academic year
+          </option>
+          <option>
+           Freshman
+          </option>
+          <option>
+           Sophomore
+          </option>
+          <option>
+           Junior
+          </option>
+          <option>
+           Senior
+          </option>
+          <option>
+           Graduate
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="major">
+          Major *
+         </label>
+         <input class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 placeholder-gray-500 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" id="major" name="major" placeholder="e.g., Computer Science, Information Technology" required="" type="text"/>
+        </div>
+       </div>
+      </fieldset>
+      <fieldset>
+       <legend class="text-white font-semibold text-lg mb-4">
+        Experience &amp; Interests
+       </legend>
+       <div class="space-y-6 max-w-3xl mx-auto">
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="experience">
+          Cybersecurity Experience Level
+         </label>
+         <select class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400" id="experience" name="experience">
+          <option disabled="" selected="">
+           Select your experience level
+          </option>
+          <option>
+           Beginner
+          </option>
+          <option>
+           Intermediate 
+          </option>
+          <option>
+           Advanced
+          </option>
+          <option>
+           Expert
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="interest">
+          Areas of Interest
+         </label>
+         <textarea class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 placeholder-gray-500 px-4 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400" id="interest" name="interest" placeholder="e.g., Penetration Testing, Digital Forensics, Network Security, Malware Analysis..." rows="3"></textarea>
+        </div>
+        <div>
+         <label class="block text-gray-300 font-semibold mb-1 text-sm" for="motivation">
+          Why do you want to join The Cyber Wings?
+         </label>
+         <textarea class="w-full rounded-md bg-[#0a0e14] border border-[#1a1f25] text-gray-300 placeholder-gray-500 px-4 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400" id="motivation" name="motivation" placeholder="Tell us what motivates you to join our cybersecurity community..." rows="4"></textarea>
+        </div>
+       </div>
+      </fieldset>
+      <button class="w-full bg-cyan-400 text-black font-medium text-lg rounded-md py-3 hover:bg-cyan-500 transition-colors" type="submit">
+       Join The Cyber Wings
+      </button>
+     </form>
+    </section>
+   </section>
+   <!-------------------------------------------- Call to Action Section --------------------------------------->
+   <section class="bg-[#0c121c] text-gray-400 py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center select-none" id="join">
+    <section class="max-w-4xl w-full bg-[#121d2e] border border-cyan-900 rounded-lg p-10 text-center  hover:border-cyan-400 hover:shadow-[0_0_35px_#0a2a3a] duration-2000 transition-colors duration-300">
+     <h2 class="text-white text-3xl sm:text-4xl font-extrabold mb-4">
+      Ready to Join The Cyber Wings?
+     </h2>
+     <p class="max-w-xl mx-auto mb-8 text-base sm:text-lg leading-relaxed">
+      Become a member today and gain access to workshops, resources, and a community of cybersecurity enthusiasts.
+     </p>
+     <a class="inline-flex items-center justify-center bg-cyan-400 text-black font-normal text-base sm:text-lg rounded-md px-8 py-3 transition hover:bg-cyan-500" href="#membership">
+      Join Us Now
+      <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+       <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke-linecap="round" stroke-linejoin="round">
+       </path>
+       <path d="M15 3h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round">
+       </path>
+      </svg>
+     </a>
+    </section>
+   </section>
+  </main>
+  <!----------------------------- Footer --------------------------------->
+  <footer class="border-t border-[#0a1a25] py-10 bg-[#0c121c] select-none" id="contact">
+   <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center space-x-2 mb-3 text-cyan-400 font-extrabold text-sm sm:text-base">
+      <img src="/images/logo.png" alt="Logo" style="width:44px;height:44px;filter:drop-shadow(0 0 8px rgba(0,216,255,0.7))"/>
+     <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-400 bg-clip-text text-transparent font-semibold text-2xl">
+      THECYBERWINGS
+     </span>
+    </div>
+    <p class="max-w-xl mx-auto mb-4 text-base sm:text-lg leading-relaxed text-gray-400">
+     Have questions or want to learn more about The Cyber Wings? Send us a message and we'll get back to you.
+    </p>
+    <nav class="flex justify-center space-x-8 text-gray-400 text-base sm:text-lg">
+     <a class="hover:text-gray-300" href="https://www.instagram.com/the_cyber_wings?igsh=Y3Z0NjJzY2tndXJv">
+      Instagram
+     </a>
+     <a class="hover:text-gray-300" href="#">
+      GitHub
+     </a>
+     <a class="hover:text-gray-300" href="https://www.linkedin.com/company/the-cyber-wings/">
+      LinkedIn
+     </a>
+    </nav>
+   </div>
+  </footer>
+
+ <script>
+  // ── Membership Registration Form ──────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#membership form');
+    if (!form) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Basic client-side check
+      const required = ['fullname', 'email', 'studentid', 'academicyear', 'major'];
+      for (const field of required) {
+        if (!form[field] || !form[field].value.trim()) {
+          showToast('Please fill in all required fields.', 'error');
+          return;
+        }
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const body = {
+        fullname:      form.fullname.value.trim(),
+        email:         form.email.value.trim(),
+        student_id:    form.studentid.value.trim(),
+        academic_year: form.academicyear.value,
+        major:         form.major.value.trim(),
+        experience:    form.experience ? form.experience.value : 'Beginner',
+        interests:     form.interest   ? form.interest.value.trim()    : '',
+        motivation:    form.motivation ? form.motivation.value.trim()  : '',
+      };
+
+      try {
+        const res  = await fetch('/api/members/register', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(body),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showToast(data.message, 'success');
+          form.reset();
+        } else {
+          const msg = data.errors ? data.errors.map(e => e.msg).join(' | ') : data.message;
+          showToast(msg, 'error');
+        }
+      } catch (err) {
+        showToast('Network error. Please check your connection and try again.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join The Cyber Wings';
+      }
+    });
+  });
+
+  // ── Toast Notification Helper ─────────────────────────────────────────────
+  function showToast(message, type = 'success') {
+    const existing = document.getElementById('cw-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'cw-toast';
+    toast.style.cssText = `
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      padding: 14px 20px; border-radius: 10px; max-width: 360px;
+      font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500;
+      color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      background: ${type === 'success' ? '#0e7490' : '#b91c1c'};
+      border-left: 4px solid ${type === 'success' ? '#22d3ee' : '#ef4444'};
+      transition: opacity 0.4s ease;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 400);
+    }, 4000);
+  }
+ </script>
+ </body>
+</html>

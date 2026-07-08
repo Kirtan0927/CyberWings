@@ -1,0 +1,321 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>The Cyber Wings Events & Gallery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+        font-family: 'Roboto', sans-serif;    }
+  </style>
+</head>
+<body class="bg-[#060e14] text-white min-h-screen flex flex-col select-none">
+   <!-- Navigation -->
+  <header class="bg-[#050a0f] border-b border-[#0a1a27] sticky top-0 z-50 select-none">
+   <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
+    <div class="flex items-center space-x-2">
+    <a href="/index.html"><img src="/images/logo.png" alt="Logo" style="width:44px;height:44px;filter:drop-shadow(0 0 8px rgba(0,216,255,0.7))"/></a>
+     <span class="font-extrabold text-cyan-400 text-lg tracking-wide select-none drop-shadow-[0_0_8px_rgba(0,216,255,0.7)]">
+      THECYBERWINGS
+     </span>
+    </div>
+    <ul class="hidden md:flex space-x-10 text-sm font-normal text-gray-400">
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="member.html">
+       Members
+      </a>
+     </li>
+     <li>
+      <a class="text-cyan-400 font-semibold border-b-2 border-cyan-400 pb-1" href="Event.html">
+       Events
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-cyan-400 hover:font-semibold hover:border-b-2 hover:border-cyan-400 pb-1 transition" href="contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+    <div class="hidden md:flex space-x-6 text-gray-400 text-lg">
+     <a aria-label="Instagram" class="hover:text-pink-600 transition" href="https://www.instagram.com/the_cyber_wings?igsh=Y3Z0NjJzY2tndXJv">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="GitHub" class="hover:text-white transition" href="#">
+      <i class="fab fa-github">
+      </i>
+     </a>
+     <a aria-label="LinkedIn" class="hover:text-blue-500 transition" href="https://www.linkedin.com/company/the-cyber-wings/">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+    </div>
+   </nav>
+  </header>
+  <section
+    class=" py-12 px-4 text-center max-w-7xl mx-auto w-full">
+    <p class="text-[#00cfff] text-sm font-mono mb-3 tracking-wide">
+      03
+      <span class="text-white"> // </span>ACTIVITIES
+    </p>
+    <h1 class="text-5xl font-extrabold max-w-4xl mx-auto mb-4">
+      Events &amp;
+      <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+          Gallery
+        </span>
+    </h1>
+    <p class="text-[#a0a9b8] text-lg max-w-3xl mx-auto leading-relaxed">
+      Explore our past events, workshops, competitions, and memorable moments
+      <br />
+      from The Cyber Wing community.
+    </p>
+  </section>
+  <section
+    class="flex justify-center gap-4 max-w-7xl mx-auto px-4 mb-12 flex-wrap"
+  >
+    <button
+      id="allBtn"
+      class="bg-[#00cfff] text-[#060e14] rounded-full px-6 py-3 font-medium shadow-[0_0_15px_#00cfff] transition"
+    >
+      All Events
+    </button>
+    <button
+      id="workshopsBtn"
+      class="border border-[#1f2a3a] rounded-full px-6 py-3 font-medium text-[#a0a9b8] hover:border-[#00cfff] transition"
+    >
+      Workshops
+    </button>
+    <button
+      id="competitionsBtn"
+      class="border border-[#1f2a3a] rounded-full px-6 py-3 font-medium text-[#a0a9b8] hover:border-[#00cfff] transition"
+    >
+      Competitions
+    </button>
+    <button
+      id="meetupsBtn"
+      class="border border-[#1f2a3a] rounded-full px-6 py-3 font-medium text-[#a0a9b8] hover:border-[#00cfff] transition"
+    >
+      Meetups
+    </button>
+  </section>
+  <section
+    id="eventsContainer"
+    class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
+  >
+    <!-- Events will be rendered here -->
+  </section>
+
+  <script>
+    let allEvents = [];
+    let activeFilter = "all";
+
+    const eventsContainer = document.getElementById("eventsContainer");
+    const allBtn          = document.getElementById("allBtn");
+    const workshopsBtn    = document.getElementById("workshopsBtn");
+    const competitionsBtn = document.getElementById("competitionsBtn");
+    const meetupsBtn      = document.getElementById("meetupsBtn");
+    const buttons         = [allBtn, workshopsBtn, competitionsBtn, meetupsBtn];
+
+    // ── Helpers ────────────────────────────────────────────────────────────────
+    function formatDate(dateStr) {
+      if (!dateStr) return "TBA";
+      const d = new Date(dateStr);
+      return isNaN(d) ? dateStr : d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function statusBadge(status) {
+      const map = {
+        upcoming:  { bg: "bg-cyan-500",  label: "Upcoming"  },
+        completed: { bg: "bg-gray-500",  label: "Completed" },
+        cancelled: { bg: "bg-red-500",   label: "Cancelled" },
+        ongoing:   { bg: "bg-green-500", label: "Ongoing"   },
+      };
+      const s = map[status] || { bg: "bg-gray-600", label: status || "Event" };
+      return `<span class="absolute top-3 left-3 ${s.bg} text-white text-xs font-semibold px-2 py-1 rounded-full">${s.label}</span>`;
+    }
+
+    function eventCard(ev) {
+      const fallback = `https://placehold.co/600x400/0a121a/00cfff?text=${encodeURIComponent(ev.title)}`;
+      const location = ev.location || "TBA";
+      const desc     = ev.description || "";
+
+      // Completed event with gallery photos → slideshow card
+      if (ev.status === 'completed' && ev.photos && ev.photos.length > 0) {
+        const photos = ev.photos.map(p => p.photo);
+        // Use main image as first if not already in photos
+        const slides = ev.image && !photos.includes(ev.image) ? [ev.image, ...photos] : photos;
+        const slidesJson = JSON.stringify(slides).replace(/"/g, '&quot;');
+        const uid = `slide-${ev.id}`;
+        return `
+        <article class="relative rounded-lg overflow-hidden border border-[#1f2a3a] flex flex-col hover:border-cyan-500 transition-colors duration-300">
+          <div class="relative overflow-hidden" style="height:208px">
+            <div class="slideshow-track" id="track-${uid}" style="display:flex;height:100%;transition:transform 0.5s ease;will-change:transform">
+              ${slides.map(src => `<img src="${src}" alt="${ev.title}" style="min-width:100%;height:208px;object-fit:cover;" onerror="this.src='${fallback}'">`).join('')}
+            </div>
+            ${statusBadge(ev.status)}
+            ${ev.is_featured ? '<span class="absolute top-3 right-3 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full">⭐ Featured</span>' : ''}
+            ${slides.length > 1 ? `
+            <button onclick="slidePrev('${uid}',${slides.length})" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:none;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2">‹</button>
+            <button onclick="slideNext('${uid}',${slides.length})" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:none;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2">›</button>
+            <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2">
+              ${slides.map((_,i)=>`<span class="dot-${uid}" data-i="${i}" onclick="slideTo('${uid}',${i},${slides.length})" style="width:7px;height:7px;border-radius:50%;background:${i===0?'#00cfff':'rgba(255,255,255,0.4)'};cursor:pointer;transition:background 0.3s"></span>`).join('')}
+            </div>
+            <div style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);border-radius:12px;padding:2px 8px;font-size:11px;color:#00cfff;z-index:2">
+              <i class="fas fa-images" style="margin-right:3px"></i>${slides.length}
+            </div>
+            ` : ''}
+          </div>
+          <div class="p-4 bg-[#060e14] flex flex-col flex-1">
+            <span class="text-xs text-cyan-400 font-semibold uppercase tracking-wide mb-1">${ev.category || "event"}</span>
+            <h3 class="font-semibold text-white mb-2 text-sm sm:text-base leading-snug">${ev.title}</h3>
+            <p class="text-[#a0a9b8] text-xs sm:text-sm mb-3 flex-1 line-clamp-2">${desc}</p>
+            <div class="flex flex-wrap items-center text-[#a0a9b8] text-xs gap-x-4 gap-y-1 mt-auto">
+              <div class="flex items-center gap-1"><i class="far fa-calendar-alt text-cyan-400"></i><span>${formatDate(ev.event_date)}</span></div>
+              <div class="flex items-center gap-1"><i class="fas fa-map-marker-alt text-cyan-400"></i><span>${location}</span></div>
+            </div>
+          </div>
+        </article>`;
+      }
+
+      // Upcoming / no gallery → single image card
+      const imgSrc = ev.image || fallback;
+      return `
+      <article class="relative rounded-lg overflow-hidden border border-[#1f2a3a] flex flex-col hover:border-cyan-500 transition-colors duration-300">
+        <div class="relative">
+          <img alt="${ev.title}" class="w-full h-52 object-cover" src="${imgSrc}" onerror="this.src='${fallback}'"/>
+          ${statusBadge(ev.status)}
+          ${ev.is_featured ? '<span class="absolute top-3 right-3 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded-full">⭐ Featured</span>' : ''}
+        </div>
+        <div class="p-4 bg-[#060e14] flex flex-col flex-1">
+          <span class="text-xs text-cyan-400 font-semibold uppercase tracking-wide mb-1">${ev.category || "event"}</span>
+          <h3 class="font-semibold text-white mb-2 text-sm sm:text-base leading-snug">${ev.title}</h3>
+          <p class="text-[#a0a9b8] text-xs sm:text-sm mb-3 flex-1 line-clamp-2">${desc}</p>
+          <div class="flex flex-wrap items-center text-[#a0a9b8] text-xs gap-x-4 gap-y-1 mt-auto">
+            <div class="flex items-center gap-1"><i class="far fa-calendar-alt text-cyan-400"></i><span>${formatDate(ev.event_date)}</span></div>
+            <div class="flex items-center gap-1"><i class="fas fa-map-marker-alt text-cyan-400"></i><span>${location}</span></div>
+          </div>
+        </div>
+      </article>`;
+    }
+  
+
+    // ── Slideshow helpers ──────────────────────────────────────────────────────
+    const slideState = {};
+
+    function slideTo(uid, index, total) {
+      slideState[uid] = index;
+      const track = document.getElementById(`track-${uid}`);
+      if (track) track.style.transform = `translateX(-${index * 100}%)`;
+      document.querySelectorAll(`.dot-${uid}`).forEach((dot, i) => {
+        dot.style.background = i === index ? '#00cfff' : 'rgba(255,255,255,0.4)';
+      });
+    }
+
+    function slideNext(uid, total) {
+      const cur = (slideState[uid] || 0);
+      slideTo(uid, (cur + 1) % total, total);
+    }
+
+    function slidePrev(uid, total) {
+      const cur = (slideState[uid] || 0);
+      slideTo(uid, (cur - 1 + total) % total, total);
+    }
+
+    // Auto-play all slideshows
+    function startAutoPlay() {
+      document.querySelectorAll('.slideshow-track').forEach(track => {
+        const uid = track.id.replace('track-', '');
+        const total = track.children.length;
+        if (total > 1) {
+          setInterval(() => slideNext(uid, total), 3500);
+        }
+      });
+    }
+
+    // ── Render ─────────────────────────────────────────────────────────────────
+    function renderEvents(filter = "all") {
+      activeFilter = filter;
+      const filtered = filter === "all"
+        ? allEvents
+        : allEvents.filter(ev => (ev.category || "").toLowerCase() === filter);
+
+      if (filtered.length === 0) {
+        eventsContainer.innerHTML = `
+          <div class="col-span-3 text-center py-20 text-[#a0a9b8]">
+            <i class="fas fa-calendar-times text-5xl mb-4 block opacity-30"></i>
+            <p>No events found${filter !== "all" ? " in this category" : ""}.</p>
+          </div>`;
+        return;
+      }
+      eventsContainer.innerHTML = filtered.map(eventCard).join("");
+    }
+
+    // ── Filter buttons ─────────────────────────────────────────────────────────
+    function setActiveButton(activeBtn) {
+      buttons.forEach(btn => {
+        if (btn === activeBtn) {
+          btn.classList.add("bg-[#00cfff]", "text-[#060e14]", "shadow-[0_0_15px_#00cfff]");
+          btn.classList.remove("border", "border-[#1f2a3a]", "text-[#a0a9b8]");
+        } else {
+          btn.classList.remove("bg-[#00cfff]", "text-[#060e14]", "shadow-[0_0_15px_#00cfff]");
+          btn.classList.add("border", "border-[#1f2a3a]", "text-[#a0a9b8]");
+        }
+      });
+    }
+
+    allBtn.addEventListener("click",          () => { renderEvents("all");          setActiveButton(allBtn);          setTimeout(startAutoPlay,100); });
+    workshopsBtn.addEventListener("click",    () => { renderEvents("workshops");    setActiveButton(workshopsBtn);    setTimeout(startAutoPlay,100); });
+    competitionsBtn.addEventListener("click", () => { renderEvents("competitions"); setActiveButton(competitionsBtn); setTimeout(startAutoPlay,100); });
+    meetupsBtn.addEventListener("click",      () => { renderEvents("meetups");      setActiveButton(meetupsBtn);      setTimeout(startAutoPlay,100); });
+
+    // ── Load from API ──────────────────────────────────────────────────────────
+    async function loadEvents() {
+      eventsContainer.innerHTML = `
+        <div class="col-span-3 text-center py-20">
+          <div style="width:40px;height:40px;border:3px solid #0a2a3a;border-top-color:#00d8ff;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto"></div>
+          <p class="text-[#a0a9b8] mt-4 text-sm">Loading events...</p>
+        </div>`;
+
+      try {
+        const res  = await fetch("/api/events");
+        const data = await res.json();
+        allEvents  = data.events || [];
+        renderEvents(activeFilter);
+        setTimeout(startAutoPlay, 100);
+      } catch (err) {
+        console.error("Failed to load events:", err);
+        eventsContainer.innerHTML = `
+          <div class="col-span-3 text-center py-20 text-red-400">
+            <i class="fas fa-exclamation-triangle text-4xl mb-3 block"></i>
+            <p>Could not load events. Please try again later.</p>
+          </div>`;
+      }
+    }
+
+    // spinner keyframes
+    const style = document.createElement("style");
+    style.textContent = "@keyframes spin { to { transform: rotate(360deg); } }";
+    document.head.appendChild(style);
+
+    loadEvents();
+  </script>
+</body>
+</html>

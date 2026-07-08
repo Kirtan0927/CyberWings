@@ -1,0 +1,148 @@
+
+    /* Base reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: #0e1621;
+      color: #cfd8dc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #152733;
+      border-radius: 8px;
+      border: 1px solid #1e344b;
+      padding: 32px 32px 40px 32px;
+      box-shadow: 0 3px 10px rgb(25 56 91 / 0.8);
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #e0f1ff;
+    }
+
+    p.description {
+      font-size: 0.875rem;
+      line-height: 1.4;
+      color: #9fb7c6;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+
+    h2.section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #cee6ff;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #c3d1db;
+      margin-bottom: 8px;
+    }
+
+    label span.required {
+      color: #31d2f2;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      background-color: #1b2a3b;
+      border: 1px solid #28435d;
+      border-radius: 5px;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      color: #c8d7e6;
+      width: 100%;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    textarea::placeholder {
+      color: #62819a;
+      font-style: italic;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #31d2f2;
+      background-color: #1f3660;
+      color: #e1f0ff;
+    }
+
+    select {
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #31d2f2 50%),
+        linear-gradient(135deg, #31d2f2 50%, transparent 50%);
+      background-position: calc(100% - 20px) calc(1em + 4px),
+        calc(100% - 15px) calc(1em + 4px);
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 72px;
+      font-family: inherit;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      background-color: #17d0ff;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0a0a0a;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgb(23 208 255 / 0.7);
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
+      user-select: none;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #0bc4e3;
+      box-shadow: 0 6px 15px rgb(11 196 227 / 0.9);
+      outline: none;
+    }
+
+    /* Accessibility focus for all inputs */
+    input[type="text"]:focus-visible,
+    input[type="email"]:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid #31d2f2;
+      outline-offset: 2px;
+    }
